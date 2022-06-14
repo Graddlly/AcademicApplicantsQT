@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+#include "Views/mainwindow.h"
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui -> rbSpecialities, SIGNAL(released()), this, SLOT(onRBClicked()));
 
     connect(ui -> btnAdd, SIGNAL(clicked()), this, SLOT(onBtnAddClicked()));
+    connect(ui -> btnDelete, SIGNAL(clicked()), this, SLOT(onBtnDeleteClicked()));
 
     if (!QSqlDatabase::drivers().contains("QPSQL"))
     {
@@ -128,4 +129,9 @@ void MainWindow::createUI(QString table, QStringList headers, int type)
 void MainWindow::onBtnAddClicked()
 {
     getTable -> insertRow(getTable -> rowCount());
+}
+
+void MainWindow::onBtnDeleteClicked()
+{
+    getTable -> removeRow(ui -> tableView -> selectionModel() -> selectedRows().first().row());
 }

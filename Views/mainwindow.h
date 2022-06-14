@@ -23,6 +23,7 @@ public:
 private slots:
     void onRBClicked();
     void onBtnAddClicked();
+    void onBtnDeleteClicked();
 
 private:
     Ui::MainWindow      *ui;
